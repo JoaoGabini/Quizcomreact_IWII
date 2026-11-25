@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz TypeScript, React e NestJS</title>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.question{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.option{
+    margin:8px 0;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.correct{
+    color:green;
+    font-weight:bold;
+}
+
+.wrong{
+    color:red;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+const questions = [
+{
+question:"1. Qual é a principal diferença entre interface e type no TypeScript?",
+options:{
+A:"Interfaces não podem ser estendidas, enquanto types podem.",
+B:"Types criam um novo nome para um tipo, enquanto interfaces criam contratos que podem ser mesclados.",
+C:"Interfaces funcionam apenas com tipos primitivos.",
+D:"Types não aceitam union types.",
+E:"Não há diferença prática."
+},
+answer:"B"
+},
+{
+question:"2. O que o operador keyof faz no TypeScript?",
+options:{
+A:"Cria um tipo que representa todas as chaves de um objeto.",
+B:"Retorna um array em tempo de execução.",
+C:"Converte chave numérica em string.",
+D:"Verifica se propriedade é opcional.",
+E:"Remove propriedades readonly."
+},
+answer:"A"
+},
+{
+question:"3. Qual Utility Type transforma todas as propriedades em opcionais?",
+options:{
+A:"Required<T>",
+B:"Readonly<T>",
+C:"Partial<T>",
+D:"Record<K,T>",
+E:"Pick<T,K>"
+},
+answer:"C"
+},
+{
+question:"4. O que significa readonly?",
+options:{
+A:"Só pode ser alterado em classes filhas.",
+B:"Não pode ser modificado após inicialização.",
+C:"Fica invisível fora do módulo.",
+D:"Torna-se estática.",
+E:"Torna-se opcional."
+},
+answer:"B"
+},
+{
+question:"5. Como definir um tipo que aceite apenas strings específicas?",
+options:{
+A:"enum string",
+B:'"admin" | "user"',
+C:"Literal<string>",
+D:"Exact<string>",
+E:"any restrito"
+},
+answer:"B"
+},
+{
+question:"6. Qual é a função do tipo never?",
+options:{
+A:"Representa funções que nunca retornam.",
+B:"Sinônimo de undefined.",
+C:"Aceita qualquer tipo.",
+D:"Representa valores nulos recuperáveis.",
+E:"Desativa a checagem de tipos."
+},
+answer:"A"
+},
+{
+question:"7. O que Generics (<T>) permitem fazer?",
+options:{
+A:"Criar funções/classes genéricas com segurança de tipos.",
+B:"Desativar compilação.",
+C:"Converter tipos dinamicamente.",
+D:"Substituir interfaces.",
+E:"Criar variáveis globais."
+},
+answer:"A"
+},
+{
+question:"8. Qual hook é usado para efeitos colaterais?",
+options:{
+A:"useMemo",
+B:"useState",
+C:"useEffect",
+D:"useCallback",
+E:"useRef"
+},
+answer:"C"
+},
+{
+question:"9. Para que serve useMemo?",
+options:{
+A:"Memorizar resultado de cálculos custosos.",
+B:"Estado global.",
+C:"Referências DOM.",
+D:"Executar tarefas assíncronas.",
+E:"Forçar renderização."
+},
+answer:"A"
+},
+{
+question:"10. O que é Virtual DOM?",
+options:{
+A:"Representação em memória do DOM usada para otimizar atualizações.",
+B:"Servidor embutido.",
+C:"Banco de dados local.",
+D:"Ferramenta de debug.",
+E:"Compilador JSX."
+},
+answer:"A"
+},
+{
+question:"11. Regra fundamental dos Hooks?",
+options:{
+A:"Devem ser chamados no topo do componente.",
+B:"Podem estar em qualquer função.",
+C:"Devem estar no package.json.",
+D:"Precisam de try/catch.",
+E:"Devem ser usados com rede."
+},
+answer:"A"
+},
+{
+question:"12. Como evitar prop drilling?",
+options:{
+A:"Context API",
+B:"window global",
+C:"Alterando DOM direto",
+D:"useState em cascata",
+E:"URL"
+},
+answer:"A"
+},
+{
+question:"13. Finalidade da propriedade key?",
+options:{
+A:"Identificar itens para otimizar reconciliação.",
+B:"Criptografia.",
+C:"Ordenação.",
+D:"ID de banco.",
+E:"Limitar quantidade."
+},
+answer:"A"
+},
+{
+question:"14. O que useCallback faz?",
+options:{
+A:"Memoriza funções entre renderizações.",
+B:"Executa após desmontagem.",
+C:"Gerencia HTTP.",
+D:"Retorna estado anterior.",
+E:"Executa efeito síncrono."
+},
+answer:"A"
+},
+{
+question:"15. Arquitetura predominante do NestJS?",
+options:{
+A:"Microsserviços sem módulos.",
+B:"Arquitetura modular com DI.",
+C:"Funcional pura.",
+D:"Event Driven.",
+E:"YAML."
+},
+answer:"B"
+},
+{
+question:"16. O que são Decorators?",
+options:{
+A:"Funções que adicionam metadados.",
+B:"Arquivos JSON.",
+C:"Callbacks de erro.",
+D:"Testes automáticos.",
+E:"Atalhos visuais."
+},
+answer:"A"
+},
+{
+question:"17. Quem intercepta requisições antes/depois do handler?",
+options:{
+A:"Guards",
+B:"Interceptors",
+C:"Pipes",
+D:"Filters",
+E:"Adapters"
+},
+answer:"B"
+},
+{
+question:"18. Função dos Pipes?",
+options:{
+A:"Transformar e validar dados.",
+B:"Criptografar senhas.",
+C:"Rotear microsserviços.",
+D:"Gerenciar WebSockets.",
+E:"Servir arquivos estáticos."
+},
+answer:"A"
+},
+{
+question:"19. Para que servem os Guards?",
+options:{
+A:"Autenticação e autorização.",
+B:"Upload de arquivos.",
+C:"Capturar exceções.",
+D:"Conectar banco.",
+E:"Gerar Swagger."
+},
+answer:"A"
+},
+{
+question:"20. Biblioteca HTTP padrão do NestJS?",
+options:{
+A:"Express",
+B:"Koa",
+C:"Hapi",
+D:"Restify",
+E:"Fastify puro"
+},
+answer:"A"
+}
+];
+
+function App() {
+    const [answers,setAnswers] = React.useState({});
+    const [submitted,setSubmitted] = React.useState(false);
+
+    const handleChange = (index,value)=>{
+        setAnswers({...answers,value});
+    };
+
+    const calculateScore = ()=>{
+        return questions.reduce((score,q,index)=>{
+            return answers[index] === q.answer ? score + 1 : score;
+        },0);
+    };
+
+    const score = calculateScore();
+
+    return (
+        <div className="container">
+            <h1>Quiz - TypeScript, React e NestJS</h1>
+
+            {questions.map((q,index)=>(
+                <div className="question" key={index}>
+                    <h3>{q.question}</h3>
+
+                    {Object.entries(q.options).map(([key,value])=>(
+                        <div className="option" key={key}>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name={`question-${index}`}
+                                    value={key}
+                                    onChange={()=>handleChange(index,key)}
+                                    disabled={submitted}
+                                />
+                                {" "}
+                                <strong>{key})</strong> {value}
+                            </label>
+                        </div>
+                    ))}
+
+                    {submitted && (
+                        answers[index] === q.answer ? (
+                            <p className="correct">
+                                ✅ Correto
+                            </p>
+                        ) : (
+                            <p className="wrong">
+                                ❌ Errado. Resposta correta: {q.answer}
+                            </p>
+                        )
+                    )}
+                </div>
+            ))}
+
+            {!submitted ? (
+                <button onClick={()=>setSubmitted(true)}>
+                    Finalizar Quiz
+                </button>
+            ) : (
+                <div className="result">
+                    <h2>
+                        Resultado: {score} de {questions.length}
+                    </h2>
+
+                    <h3>
+                        Percentual: {((score/questions.length)*100).toFixed(1)}%
+                    </h3>
+
+                    <button onClick={()=>{
+                        setAnswers({});
+                        setSubmitted(false);
+                    }}>
+                        Refazer Quiz
+                    </button>
+                </div>
+            )}
+        </div>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
