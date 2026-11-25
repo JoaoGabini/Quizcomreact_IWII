@@ -1,10 +1,10 @@
-#Quiz de Programação – React, NestJS e TypeScript
+# Quiz de Programação – React, NestJS e TypeScript
 
 **Disciplina:** Desenvolvimento Web  
 **Projeto:** Quiz de Conhecimentos em React, NestJS e TypeScript  
 **Integrantes:** [Nome dos integrantes]
 
-##Descrição do Projeto
+## Descrição do Projeto
 
 O projeto consiste no desenvolvimento de uma aplicação web de perguntas e respostas (Quiz), utilizando React no Front-end e NestJS no Back-end.
 
@@ -12,7 +12,7 @@ O objetivo é testar e avaliar os conhecimentos dos participantes sobre as tecno
 
 A aplicação permitirá que o usuário responda às perguntas, visualize sua pontuação final e saiba se atingiu a nota mínima necessária para aprovação.
 
-##Objetivos
+## Objetivos
 
 - Desenvolver uma aplicação web utilizando React e NestJS.
 - Aplicar conhecimentos de JavaScript e TypeScript.
@@ -20,7 +20,7 @@ A aplicação permitirá que o usuário responda às perguntas, visualize sua po
 - Desenvolver uma API para gerenciar as perguntas e respostas.
 - Implementar um sistema de pontuação e aprovação.
 
-##Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 | Tecnologia | Função |
 |---|---|
@@ -31,7 +31,7 @@ A aplicação permitirá que o usuário responda às perguntas, visualize sua po
 | Node.js | Ambiente de execução do Back-end. |
 | Git e GitHub | Controle de versão e armazenamento do projeto. |
 
-##Requisitos do Projeto
+## Requisitos do Projeto
 
 O Quiz deverá possuir:
 
@@ -44,7 +44,7 @@ O Quiz deverá possuir:
 - Indicação de aprovado ou reprovado.
 - Interface simples e intuitiva.
 
-##Funcionamento do Quiz
+## Funcionamento do Quiz
 
 1. O usuário acessa a aplicação.
 2. Inicia o Quiz.
@@ -56,7 +56,7 @@ O Quiz deverá possuir:
 
 **Critério de aprovação:** mínimo de 12 acertos de 20 questões (60%).
 
-##Planejamento do Desenvolvimento
+## Planejamento do Desenvolvimento
 
 | Etapa | Atividade |
 |---|---|
@@ -69,7 +69,7 @@ O Quiz deverá possuir:
 | 7 | Realizar testes e corrigir possíveis erros. |
 | 8 | Finalizar e publicar o projeto no GitHub. |
 
-##Estrutura do Projeto
+## Estrutura do Projeto
 
 ```text
 quiz-react-nestjs/
@@ -94,13 +94,13 @@ quiz-react-nestjs/
 └── relatorio.pdf
 ```
 
-##Integrantes
+## Integrantes
 
 - Integrante 1: João Pedro Ronchi Gabini
 - Integrante 2: Júlia Aparecida Bandeira Rudel
 - Integrante 3: Maria Eduarda Antônio Couto Silva
 
-## 📌 Considerações Finais
+## Considerações Finais
 
 O desenvolvimento deste projeto tem como finalidade colocar em prática os conhecimentos adquiridos sobre React, NestJS e TypeScript, integrando o Front-end e o Back-end em uma aplicação funcional.
 
